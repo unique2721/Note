@@ -54,7 +54,7 @@ const removeNote = (index) => {
     <div class="overlay-container">
       <textarea name="note" id="note" cols="30" rows="10" placeholder="type notes here..." v-model="newNote"></textarea>
       <p class="error">{{errorMessage}}</p>
-      <button class="add" @click="addNoteHandler" @keydown.enter="addNoteHandler">Add Note</button>
+      <button class="add" @click="addNoteHandler">Add Note</button>
       <button class="close" @click="closeNoteHandler">Close</button>
     </div>
   </div>
@@ -68,8 +68,19 @@ const removeNote = (index) => {
     </header>
     <div>
 
-      <div v-if="totalNumberOfNots === 0" class="add-note">
+      <div v-if="totalNumberOfNots === 0" class="add-note no-note">
         <h3>Add notes by clicking the plus button at the top right of the corner</h3>
+        <h1>Notes App</h1>
+        <p>This is a Notes app designed by applying the following vue js concepts</p>
+    <ul>
+      <li class="first">Conditional Rendering</li>
+      <li>Text Interpolation</li>
+      <li>Two way bindnig {v-model}</li>
+      <li>reactive states {ref}</li>
+      <li>Event Handling in vue</li>
+      <li>Loops in Vue {for loop}</li>
+      <li class="last">Dynamic Binding</li>
+    </ul>
       </div>
     </div>
 
@@ -86,6 +97,50 @@ const removeNote = (index) => {
 </template>
 
 <style scoped>
+.no-note {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  flex-direction: column;
+}
+.no-note h1 {
+  font-size: 3rem;
+  color: fuchsia;
+}
+.no-note p {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+.no-note ul {
+  border-radius: 15px;
+  width: 400px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.no-note ul li {
+  list-style-type: none;
+  font-size: 1.75rem;
+  padding: 5px;
+}
+.no-note ul li:nth-of-type(even) {
+  background-color: orange;
+}
+.no-note ul li:nth-of-type(odd) {
+  background-color: rgba(0, 0, 255, 0.74);
+  color: white;
+}
+.no-note ul li:hover {
+  background-color: #6114E0;
+  cursor: pointer;
+  color: white;
+}
+.no-note ul .first {
+  border-radius: 15px 15px 0 0 ;
+}
+.no-note ul .last {
+  border-radius: 0 0 15px 15px;
+}
 
 .container {
   width: 100vw;
@@ -127,11 +182,12 @@ const removeNote = (index) => {
 }
 .container .add-note {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 15% auto;
+}
+.container .add-note h3 {
   animation: slide linear 10s infinite;
-  transition: animation 2s;
 }
 .container .notes-container .notes {
   width: 300px;
